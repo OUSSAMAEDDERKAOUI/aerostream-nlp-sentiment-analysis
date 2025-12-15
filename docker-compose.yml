@@ -88,14 +88,19 @@ services:
   jupyter:
     <<: *airflow-common
     entrypoint: []
-    
     command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='admin'
     ports:
       - "8888:8888"
     depends_on:
       postgres:
         condition: service_healthy
-
+    
+    # NEUTRALISATION DE LA DEMANDE GPU
+    deploy: {}
+    environment:
+      # Neutralise l'allocation GPU pour les librairies (PyTorch, TF)
+      PYTHONPATH: /opt/airflow
+      CUDA_VISIBLE_DEVICES: ""
 
 
   streamlit:
@@ -107,20 +112,32 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    
+    # NEUTRALISATION DE LA DEMANDE GPU
+    deploy: {}
+    environment:
+      PYTHONPATH: /opt/airflow
+      CUDA_VISIBLE_DEVICES: ""
   
   api: 
-    build: . 
+    <<: *airflow-common
     container_name: sc-fastapi-api
+    entrypoint: [] 
+    command: ["/bin/bash", "-c", "uvicorn src.streaming.api:app --host 0.0.0.0 --port 80 --reload"] 
 
-    command: uvicorn src.streaming.api:app --host 0.0.0.0 --port 80 
-    volumes:
-      - .:/opt/airflow 
     ports:
       - "8001:80" 
+      
+    # NEUTRALISATION DE LA DEMANDE GPU
+    deploy: {}
+    environment:
+      PYTHONPATH: /opt/airflow
+      CUDA_VISIBLE_DEVICES: ""
+      
     depends_on:
       chromadb:
         condition: service_started
-
+        
 volumes:
   postgres-db-volume:
   chroma-db-volume:

@@ -1,4 +1,3 @@
-# Image de base officielle Airflow 
 FROM apache/airflow:2.9.0-python3.10
 
 USER root
@@ -21,5 +20,4 @@ RUN pip install --no-cache-dir -r /requirements.txt
 COPY --chown=airflow:root ./src /opt/airflow/src
 COPY --chown=airflow:root ./dashboard /opt/airflow/dashboard
 
-# Configuration du PYTHONPATH pour que Python trouve vos modules 'src'
 ENV PYTHONPATH="${PYTHONPATH}:/opt/airflow"

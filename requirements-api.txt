@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+sentence-transformers
+joblib
+pandas
+faker

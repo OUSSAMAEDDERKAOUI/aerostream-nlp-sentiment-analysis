@@ -1,0 +1,17 @@
+[2025-12-22T01:31:00.527+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-22T01:31:00.579+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: aerostream_streaming_pipeline.fetch_tweets scheduled__2025-12-22T01:30:00+00:00 [queued]>
+[2025-12-22T01:31:00.592+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: aerostream_streaming_pipeline.fetch_tweets scheduled__2025-12-22T01:30:00+00:00 [queued]>
+[2025-12-22T01:31:00.593+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 5
+[2025-12-22T01:31:00.611+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): fetch_tweets> on 2025-12-22 01:30:00+00:00
+[2025-12-22T01:31:00.620+0000] {standard_task_runner.py:63} INFO - Started process 13348 to run task
+[2025-12-22T01:31:00.627+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'aerostream_streaming_pipeline', 'fetch_tweets', 'scheduled__2025-12-22T01:30:00+00:00', '--job-id', '3637', '--raw', '--subdir', 'DAGS_FOLDER/streaming_tweets_dag.py', '--cfg-path', '/tmp/tmp2k3toil3']
+[2025-12-22T01:31:00.630+0000] {standard_task_runner.py:91} INFO - Job 3637: Subtask fetch_tweets
+[2025-12-22T01:31:00.703+0000] {task_command.py:426} INFO - Running <TaskInstance: aerostream_streaming_pipeline.fetch_tweets scheduled__2025-12-22T01:30:00+00:00 [running]> on host cb559349711a
+[2025-12-22T01:31:00.853+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='aerostream' AIRFLOW_CTX_DAG_ID='aerostream_streaming_pipeline' AIRFLOW_CTX_TASK_ID='fetch_tweets' AIRFLOW_CTX_EXECUTION_DATE='2025-12-22T01:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-22T01:30:00+00:00'
+[2025-12-22T01:31:00.855+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-22T01:31:00.918+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-12-22T01:31:00.920+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-22T01:31:00.934+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=aerostream_streaming_pipeline, task_id=fetch_tweets, execution_date=20251222T013000, start_date=20251222T013100, end_date=20251222T013100
+[2025-12-22T01:31:00.999+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-12-22T01:31:01.044+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-12-22T01:31:01.048+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
